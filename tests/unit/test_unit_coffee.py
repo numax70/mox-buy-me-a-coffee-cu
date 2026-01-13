@@ -68,3 +68,17 @@ def test_funders_clear_eth_after_withdraw(coffee):
     assert coffee.funder_to_amount_funded(funders[0]) == 0
     for i in funders:
         assert coffee.funder_to_amount_funded(i) == 0
+
+        
+
+def test_contract_function_default(coffee, account):
+    funders = []
+    boa.env.set_balance(account.address, to_wei(7, "ether"))
+    saldo_iniziale = boa.env.get_balance(account.address)
+    with boa.env.prank(account.address):
+        coffee.__default__(value = to_wei(3,"ether"))
+        funders.append(account.address)
+    saldo_finale = boa.env.get_balance(account.address)    
+    assert saldo_finale < saldo_iniziale
+    assert coffee.funder_to_amount_funded(funders[0]) > 0
+              
