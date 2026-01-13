@@ -1,0 +1,19 @@
+@external
+@view
+def decimals()->uint8:
+    ...
+
+@external
+@view
+def description()-> uint256:
+    ...  
+
+@external
+@view
+def version()-> String[100]:
+    ...
+
+@external
+@view
+def latestAnswer()-> int256:
+    ... 
