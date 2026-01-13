@@ -58,8 +58,8 @@ def withdraw(): # funzione di preleievo
     How do we make sure only we can pull the money out?
     """
     assert msg.sender == OWNER, "Not the contract owner!" # controlliamo se chi richiede sia effettivamente il proprietario
-    raw_call(OWNER, b"", value = self.balance) #  # inviamo tutto il balance, al proprietario
-    # send(OWNER, self.balance)  # inviamo tutto il balance, al proprietario
+    raw_call(OWNER, b"", value = self.balance) #  # inviamo tutto al proprietario
+    # send(OWNER, self.balance)  # inviamo tutto il balance, al proprietario (funzione deprecata perchè non sicura)
     # resetting
     for funder: address in self.funders: # resettiamo gli stati (array e hashmap)
         self.funder_to_amount_funded[funder] = 0
